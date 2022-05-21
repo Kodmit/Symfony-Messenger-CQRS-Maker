@@ -1,0 +1,5 @@
+services:
+
+  Kodmit\MessengerCqrsGeneratorBundle\Command\DemoteUserCommand:
+    class: Kodmit\UserBundle\Command\DemoteUserCommand
+    tags: ['console.command']

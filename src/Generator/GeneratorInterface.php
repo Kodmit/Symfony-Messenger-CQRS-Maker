@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Kod\MessengerCqrsGeneratorBundle\Generator;
+namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
 
 interface GeneratorInterface

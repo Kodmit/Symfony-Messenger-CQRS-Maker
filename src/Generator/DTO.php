@@ -1,6 +1,6 @@
 <?php
 
-namespace Kod\MessengerCqrsGeneratorBundle\Generator;
+namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
 use function Symfony\Component\String\lower;
 

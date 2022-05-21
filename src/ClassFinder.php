@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Kod\MessengerCqrsGeneratorBundle;
+namespace Kodmit\MessengerCqrsGeneratorBundle;
 
 
 class ClassFinder

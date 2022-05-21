@@ -1,11 +1,14 @@
 <?php
 
-namespace Kod\MessengerCqrsGeneratorBundle;
+namespace Kodmit\MessengerCqrsGeneratorBundle;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Kodmit\MessengerCqrsGeneratorBundle\DependencyInjection\MessengerCqrsGeneratorExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class MessengerCqrsGeneratorBundle extends Bundle
 {
-
+    public function getContainerExtension(): MessengerCqrsGeneratorExtension
+    {
+        return new MessengerCqrsGeneratorExtension();
+    }
 }
