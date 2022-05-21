@@ -4,4 +4,4 @@ services:
     class: Kodmit\MessengerCqrsGeneratorBundle\Command\CrudCreateCommand
     tags: ['console.command']
     arguments:
-      $classFinder: "Kodmit\MessengerCqrsGeneratorBundle\ClassFinder"
+      $classFinder: Kodmit\MessengerCqrsGeneratorBundle\ClassFinder
