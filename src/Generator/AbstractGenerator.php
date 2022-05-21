@@ -4,7 +4,7 @@ namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
 abstract class AbstractGenerator
 {
-    protected const APP_ROOT = __DIR__ . '/../../';
+    protected const APP_ROOT = __DIR__ . '/../../../../../src';
     protected const SKIPPED_PROPERTIES = ['createdAt', 'updatedAt'];
 
     protected string $namespace;
@@ -90,13 +90,14 @@ abstract class AbstractGenerator
             }
 
             if ('id' === $property->getName() && false === $ignoreId) {
+                $propertyType = null === $property->getType() ? '' : sprintf(': %s', $property->getType());
                 $className = self::getClassNameFromNamespace($this->namespace);
-                $getters .= sprintf('public function get%sId(): %s
+                $getters .= sprintf('public function get%sId()%s
     {
         return $this->%sId;
     }
             ' . "\n",
-                    $className, $property->getType(), strtolower($className)
+                    $className, $propertyType, strtolower($className)
                 );
 
                 if (true === $onlyId) {
@@ -106,12 +107,14 @@ abstract class AbstractGenerator
                 continue;
             }
 
-            $getters .= sprintf('public function get%s(): %s
+            $propertyType = null === $property->getType() ? '' : sprintf(': %s', $property->getType());
+
+            $getters .= sprintf('public function get%s()%s
     {
         return $this->%s;
     }
             ' . "\n",
-                ucfirst($property->getName()), $property->getType(), $property->getName()
+                ucfirst($property->getName()), $propertyType, $property->getName()
             );
         }
 
