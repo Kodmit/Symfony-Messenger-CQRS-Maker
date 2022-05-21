@@ -6,7 +6,7 @@ namespace Kodmit\MessengerCqrsGeneratorBundle;
 
 class ClassFinder
 {
-    const appRoot = __DIR__ . '/../../';
+    const appRoot = __DIR__ . '/../../../../';
 
     public static function getClassesInNamespace($namespace): array
     {
