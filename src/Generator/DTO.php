@@ -2,8 +2,6 @@
 
 namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
-use function Symfony\Component\String\lower;
-
 class DTO extends AbstractGenerator implements GeneratorInterface
 {
     public function generate(): void

@@ -2,8 +2,9 @@
 
 namespace Kodmit\MessengerCqrsGeneratorBundle\Command;
 
-use App\Kod\ClassFinder;
-use App\Kod\Generator\Generator;
+use Kodmit\MessengerCqrsGeneratorBundle\ClassFinder;
+
+use Kodmit\MessengerCqrsGeneratorBundle\Generator\Generator;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
