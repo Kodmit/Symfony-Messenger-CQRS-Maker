@@ -20,9 +20,9 @@ class CrudCreateCommand extends Command
 
     private ClassFinder $classFinder;
 
-    public function __construct(ClassFinder $classFinder)
+    public function __construct()
     {
-        $this->classFinder = $classFinder;
+        $this->classFinder = new ClassFinder();
         parent::__construct();
     }
 
