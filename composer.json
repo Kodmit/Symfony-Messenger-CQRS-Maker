@@ -1,5 +1,5 @@
 {
-  "name": "kod/messenger-cqrs-generator-bundle",
+  "name": "kodmit/messenger-cqrs-generator",
   "description": "Generate CRUD CQRS with Messenger",
   "type": "symfony-bundle",
   "require": {
