@@ -4,12 +4,6 @@ namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
 class Handler extends AbstractGenerator implements GeneratorInterface
 {
-    public const CREATE = 'Create';
-    public const DELETE = 'Delete';
-    public const UPDATE = 'Update';
-
-    private const AVAILABLE_SCOPES = [self::CREATE, self::DELETE, self::UPDATE];
-
     public function generate(string $scope = null): array
     {
         $filePaths = [];
