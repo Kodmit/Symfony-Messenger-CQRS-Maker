@@ -20,8 +20,8 @@ class DTO extends AbstractGenerator implements GeneratorInterface
             throw new \DomainException(sprintf('invalid scope "%s"', $scope));
         }
 
-        $methodToCall = sprintf('generate%s()', $scope);
-        $filePaths[] = $this->$$methodToCall;
+        $methodToCall = sprintf('generate%s', $scope);
+        $filePaths[] = $this->{$methodToCall}();
 
         return $filePaths;
     }
