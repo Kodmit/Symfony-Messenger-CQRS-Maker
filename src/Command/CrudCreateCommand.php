@@ -52,7 +52,9 @@ class CrudCreateCommand extends Command
         $generator = new Generator($entity);
         $generatedFiles = $generator->generateCrud();
 
-        $io->write('File generated:');
+        $io->newLine();
+
+        $io->write('Files generated:');
         $io->listing($generatedFiles);
 
         $io->success('Messenger CRUD and controller generated, now add your own logic :)');

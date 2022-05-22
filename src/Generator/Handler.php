@@ -90,6 +90,6 @@ class %2$s%1$sHandler implements MessageHandlerInterface
 
         file_put_contents($filePath, $data);
 
-        return $filePath;
+        return self::getHumanReadablePath($filePath);
     }
 }

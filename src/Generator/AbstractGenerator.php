@@ -120,4 +120,19 @@ abstract class AbstractGenerator
 
         return $getters;
     }
+
+    protected static function getHumanReadablePath(string $path): string
+    {
+        $explodedPath = explode('/', $path);
+        $rebuildPath = [];
+
+        foreach (array_reverse($explodedPath) as $pathFragment) {
+            if ('..' === $pathFragment) {
+                break;
+            }
+            $rebuildPath[] = $pathFragment;
+        }
+
+        return implode('/', array_reverse($rebuildPath));
+    }
 }

@@ -50,7 +50,7 @@ class Create%1$s
 
         file_put_contents($filePath, $data);
 
-        return $filePath;
+        return self::getHumanReadablePath($filePath);
     }
 
     public function generateUpdate(): string
@@ -93,7 +93,7 @@ class Update%1$s
 
         file_put_contents($filePath, $data);
 
-        return $filePath;
+        return self::getHumanReadablePath($filePath);
     }
 
     public function generateDelete(): string
@@ -129,7 +129,7 @@ class Delete%1$s
 
         file_put_contents($filePath, $data);
 
-        return $filePath;
+        return self::getHumanReadablePath($filePath);
     }
 
 }

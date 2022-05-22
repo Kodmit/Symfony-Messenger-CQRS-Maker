@@ -192,7 +192,7 @@ class %1$sController extends AbstractController
 
         file_put_contents($filePath, $data);
 
-        return $filePath;
+        return self::getHumanReadablePath($filePath);
     }
 
     private static function getHttpVerbForScope(string $scope): string
