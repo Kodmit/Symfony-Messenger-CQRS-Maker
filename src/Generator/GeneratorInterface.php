@@ -6,5 +6,5 @@ namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
 interface GeneratorInterface
 {
-    public function generate(): void;
+    public function generate(): array;
 }

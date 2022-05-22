@@ -12,20 +12,24 @@ class Controller extends AbstractGenerator implements GeneratorInterface
 
     private const AVAILABLE_SCOPES = [self::CREATE, self::DELETE, self::UPDATE];
 
-    public function generate(string $scope = null): void
+    public function generate(string $scope = null): array
     {
-        $this->initFile($scope);
+        $filePath = $this->initFile($scope);
 
         if (null === $scope) {
             foreach (self::AVAILABLE_SCOPES as $availableScope) {
                 $this->appendMethod($availableScope);
             }
-            return;
+            return [$filePath];
         }
 
         if (false === in_array($scope, self::AVAILABLE_SCOPES)) {
             throw new \DomainException(sprintf('invalid scope "%s"', $scope));
         }
+
+        $this->appendMethod($scope);
+
+        return [$filePath];
     }
 
     private function appendMethod(string $scope): void
@@ -115,7 +119,7 @@ class Controller extends AbstractGenerator implements GeneratorInterface
         file_put_contents( $filePath , implode( "", $lines ) );
     }
 
-    private function initFile(?string $scope): void
+    private function initFile(?string $scope): string
     {
         $filePath = sprintf('%s/Controller/%sController.php', self::APP_ROOT, $this->className);
         touch($filePath);
@@ -187,6 +191,8 @@ class %1$sController extends AbstractController
         ', $this->className, strtolower($this->className), $extraClasses);
 
         file_put_contents($filePath, $data);
+
+        return $filePath;
     }
 
     private static function getHttpVerbForScope(string $scope): string

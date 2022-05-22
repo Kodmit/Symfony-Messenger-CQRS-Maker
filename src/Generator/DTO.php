@@ -4,14 +4,18 @@ namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
 class DTO extends AbstractGenerator implements GeneratorInterface
 {
-    public function generate(): void
+    public function generate(): array
     {
-        $this->generateCreate();
-        $this->generateUpdate();
-        $this->generateDelete();
+        $filePaths = [];
+
+        $filePaths[] = $this->generateCreate();
+        $filePaths[] = $this->generateUpdate();
+        $filePaths[] = $this->generateDelete();
+
+        return $filePaths;
     }
 
-    public function generateCreate(): void
+    public function generateCreate(): string
     {
         $privateProperties = '';
 
@@ -45,9 +49,11 @@ class Create%1$s
         );
 
         file_put_contents($filePath, $data);
+
+        return $filePath;
     }
 
-    public function generateUpdate(): void
+    public function generateUpdate(): string
     {
         $privateProperties = '';
 
@@ -86,9 +92,11 @@ class Update%1$s
         );
 
         file_put_contents($filePath, $data);
+
+        return $filePath;
     }
 
-    public function generateDelete(): void
+    public function generateDelete(): string
     {
         try {
             $id = $this->reflection->getProperty('id');
@@ -120,6 +128,8 @@ class Delete%1$s
         );
 
         file_put_contents($filePath, $data);
+
+        return $filePath;
     }
 
 }

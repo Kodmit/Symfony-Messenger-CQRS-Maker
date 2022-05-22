@@ -15,10 +15,12 @@ class Generator
         $this->handler = new Handler($namespace);
     }
 
-    public function generateCrud(): void
+    public function generateCrud(): array
     {
-        $this->dto->generate();
-        $this->handler->generate();
-        $this->controller->generate();
+        return array_merge(
+            $this->dto->generate(),
+            $this->handler->generate(),
+            $this->controller->generate()
+        );
     }
 }

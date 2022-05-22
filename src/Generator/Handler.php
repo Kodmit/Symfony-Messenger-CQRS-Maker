@@ -2,8 +2,6 @@
 
 namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
-
 class Handler extends AbstractGenerator implements GeneratorInterface
 {
     public const CREATE = 'Create';
@@ -12,23 +10,27 @@ class Handler extends AbstractGenerator implements GeneratorInterface
 
     private const AVAILABLE_SCOPES = [self::CREATE, self::DELETE, self::UPDATE];
 
-    public function generate(string $scope = null): void
+    public function generate(string $scope = null): array
     {
+        $filePaths = [];
+
         if (null === $scope) {
             foreach (self::AVAILABLE_SCOPES as $availableScope) {
-                $this->createFile($availableScope);
+                $filePaths[] = $this->createFile($availableScope);
             }
-            return;
+            return $filePaths;
         }
 
         if (false === in_array($scope, self::AVAILABLE_SCOPES)) {
             throw new \DomainException(sprintf('invalid scope "%s"', $scope));
         }
 
-        $this->createFile($scope);
+        $filePaths[] = $this->createFile($scope);
+
+        return $filePaths;
     }
 
-    private function createFile(string $scope): void
+    private function createFile(string $scope): string
     {
         $filePath = sprintf('%s/%s%sHandler.php', $this->dirPath, $scope, $this->className);
         touch($filePath);
@@ -75,7 +77,6 @@ class %2$s%1$sHandler implements MessageHandlerInterface
     public function __invoke(%2$s%1$s $command): %4$s
     {
 %5$s
-
         // TODO: Implement your own logic :)
     }
 }
@@ -88,5 +89,7 @@ class %2$s%1$sHandler implements MessageHandlerInterface
         );
 
         file_put_contents($filePath, $data);
+
+        return $filePath;
     }
 }

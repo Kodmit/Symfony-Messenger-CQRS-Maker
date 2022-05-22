@@ -15,8 +15,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CrudCreateCommand extends Command
 {
-    protected static $defaultName = 'kodmit:crud:create';
-    protected static $defaultDescription = 'Creates a CRUD';
+    protected static $defaultName = 'kodmit:make:crud';
+    protected static $defaultDescription = 'Creates a CRUD with controller';
 
     private ClassFinder $classFinder;
 
@@ -50,9 +50,12 @@ class CrudCreateCommand extends Command
         $io->text(sprintf('Generating REST CRUD for entity "%s"...', $entity));
 
         $generator = new Generator($entity);
-        $generator->generateCrud();
+        $generatedFiles = $generator->generateCrud();
 
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $io->write('File generated:');
+        $io->listing($generatedFiles);
+
+        $io->success('Messenger CRUD and controller generated, now add your own logic :)');
 
         return Command::SUCCESS;
     }
