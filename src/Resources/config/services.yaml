@@ -1,5 +1,17 @@
 services:
 
-  Kodmit\MessengerCqrsGeneratorBundle\Command\CrudCreateCommand:
-    class: Kodmit\MessengerCqrsGeneratorBundle\Command\CrudCreateCommand
+  Kodmit\MessengerCqrsGeneratorBundle\Command\MakeCrudCommand:
+    class: Kodmit\MessengerCqrsGeneratorBundle\Command\MakeCrudCommand
+    tags: ['console.command']
+
+  Kodmit\MessengerCqrsGeneratorBundle\Command\MakeCreateCommand:
+    class: Kodmit\MessengerCqrsGeneratorBundle\Command\MakeCreateCommand
+    tags: ['console.command']
+
+  Kodmit\MessengerCqrsGeneratorBundle\Command\MakeUpdateCommand:
+    class: Kodmit\MessengerCqrsGeneratorBundle\Command\MakeUpdateCommand
+    tags: ['console.command']
+
+  Kodmit\MessengerCqrsGeneratorBundle\Command\MakeDeleteCommand:
+    class: Kodmit\MessengerCqrsGeneratorBundle\Command\MakeDeleteCommand
     tags: ['console.command']

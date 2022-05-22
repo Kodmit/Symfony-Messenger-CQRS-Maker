@@ -4,6 +4,12 @@ namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
 abstract class AbstractGenerator
 {
+    public const CREATE = 'Create';
+    public const DELETE = 'Delete';
+    public const UPDATE = 'Update';
+
+    public const AVAILABLE_SCOPES = [self::CREATE, self::DELETE, self::UPDATE];
+
     protected const APP_ROOT = __DIR__ . '/../../../../../src';
     protected const SKIPPED_PROPERTIES = ['createdAt', 'updatedAt'];
 

@@ -4,6 +4,7 @@ namespace Kodmit\MessengerCqrsGeneratorBundle\Command;
 
 use Kodmit\MessengerCqrsGeneratorBundle\ClassFinder;
 
+use Kodmit\MessengerCqrsGeneratorBundle\Generator\AbstractGenerator;
 use Kodmit\MessengerCqrsGeneratorBundle\Generator\Generator;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -13,10 +14,10 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class CrudCreateCommand extends Command
+class MakeCreateCommand extends Command
 {
-    protected static $defaultName = 'kodmit:make:crud';
-    protected static $defaultDescription = 'Creates a CRUD with controller';
+    protected static $defaultName = 'kodmit:make:create';
+    protected static $defaultDescription = 'Creates a create DTO, handler and hydrate the existing controller';
 
     private ClassFinder $classFinder;
 
@@ -50,14 +51,14 @@ class CrudCreateCommand extends Command
         $io->text(sprintf('Generating REST CRUD for entity "%s"...', $entity));
 
         $generator = new Generator($entity);
-        $generatedFiles = $generator->generateCrud();
+        $generatedFiles = $generator->generatedSpecificScope(AbstractGenerator::CREATE);
 
         $io->newLine();
 
         $io->write('Files generated:');
         $io->listing($generatedFiles);
 
-        $io->success('Messenger CRUD and controller generated, now add your own logic :)');
+        $io->success('Messenger create logic and controller generated, now add your own logic :)');
 
         return Command::SUCCESS;
     }

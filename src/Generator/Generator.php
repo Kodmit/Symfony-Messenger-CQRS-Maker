@@ -23,4 +23,17 @@ class Generator
             $this->controller->generate()
         );
     }
+
+    public function generatedSpecificScope(string $scope): array
+    {
+        if (false === in_array($scope, AbstractGenerator::AVAILABLE_SCOPES)) {
+            throw new \LogicException(sprintf('invalid scope "%s"', $scope));
+        }
+
+        return array_merge(
+            $this->dto->generate($scope),
+            $this->handler->generate($scope),
+            $this->controller->generate($scope)
+        );
+    }
 }

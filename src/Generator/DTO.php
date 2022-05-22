@@ -4,13 +4,24 @@ namespace Kodmit\MessengerCqrsGeneratorBundle\Generator;
 
 class DTO extends AbstractGenerator implements GeneratorInterface
 {
-    public function generate(): array
+    public function generate(string $scope = null): array
     {
         $filePaths = [];
 
-        $filePaths[] = $this->generateCreate();
-        $filePaths[] = $this->generateUpdate();
-        $filePaths[] = $this->generateDelete();
+        if (null === $scope) {
+            $filePaths[] = $this->generateCreate();
+            $filePaths[] = $this->generateUpdate();
+            $filePaths[] = $this->generateDelete();
+
+            return $filePaths;
+        }
+
+        if (false === in_array($scope, self::AVAILABLE_SCOPES)) {
+            throw new \DomainException(sprintf('invalid scope "%s"', $scope));
+        }
+
+        $methodToCall = sprintf('generate%s()', $scope);
+        $filePaths[] = $this->$$methodToCall;
 
         return $filePaths;
     }
